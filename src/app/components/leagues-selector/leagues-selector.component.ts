@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { League } from 'src/app/models/football.model';
-import { LeaguesService } from 'src/app/services/leagues.service';
+import { League } from '../../models/football.model';
+import { LeaguesService } from '../..//services/leagues.service';
 
 @Component({
   selector: 'app-leagues-selector',

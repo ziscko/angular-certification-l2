@@ -1,9 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { League, Standing, StandingsResponse } from 'src/app/models/football.model';
-import { FootballService } from 'src/app/services/football.service';
-import { LeaguesService } from 'src/app/services/leagues.service';
+import { League, Standing } from '../../models/football.model';
+import { FootballService } from '../../services/football.service';
+import { LeaguesService } from '../../services/leagues.service';
 
 @Component({
   selector: 'app-standings',
@@ -46,7 +46,7 @@ export class StandingsComponent implements OnInit {
 
   private isHomeRoute(): void {
     if (this.router.url === '/') {
-      this.router.navigate(['/standings/' + this.leagues.at(0)?.id]);
+      this.router.navigate(['/standings/' + this.leagues[0]?.id]);
     }
   }
 }

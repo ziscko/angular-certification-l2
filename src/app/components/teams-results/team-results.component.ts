@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { Fixture, Team, TeamsResponse } from 'src/app/models/football.model';
-import { FootballService } from 'src/app/services/football.service';
+import { Fixture, Team } from '../../models/football.model';
+import { FootballService } from '../../services/football.service';
 
 @Component({
   selector: 'app-team-results',
