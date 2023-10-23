@@ -1,0 +1,10 @@
+li {
+  cursor: pointer;
+  transition: all 0.3s;
+
+  &:hover,
+  &.active {
+    color: white;
+    background: #015977;
+  }
+}

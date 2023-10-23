@@ -1,44 +1,4 @@
-<div class="main container mb-5">
-  <h1 class="title text-center backdrop py-2 px-3 fs-4">FOOTBALL UPDATES</h1>
-
-  <ul class="list-unstyled d-flex backdrop text-center my-3 p-2">
-    <li class="flex-fill">England</li>
-    <li class="flex-fill">France</li>
-    <li class="flex-fill">Italia</li>
-  </ul>
-
-  <div class="w-100 text-center backdrop mb-4">
-    <table class="table">
-      <thead>
-        <tr>
-          <th></th>
-          <th></th>
-          <th>Name</th>
-          <th>Games</th>
-          <th>W</th>
-          <th>L</th>
-          <th>D</th>
-          <th>Goal Difference</th>
-          <th>Points</th>
-        </tr>
-      </thead>
-      <tbody class="">
-        <tr *ngFor="let standing of [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]" [routerLink]="'/teams/' + standing">
-          <td>
-            {{ standing }}
-          </td>
-          <td>
-            <img [src]="standing" [alt]="'Team logo'" />
-          </td>
-          <td>Name</td>
-          <td>Played</td>
-          <td>Win</td>
-          <td>Lose</td>
-          <td>Draw</td>
-          <td>Goals Dif</td>
-          <td>Points</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
+<main class="container mb-5">
+  <h1 class="title text-white fs-2">FOOTBALL UPDATES</h1>
+  <router-outlet></router-outlet>
+</main>

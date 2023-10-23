@@ -1,0 +1,10 @@
+<ul class="list-unstyled d-flex backdrop text-center my-3">
+  <li
+    *ngFor="let league of leagues"
+    class="flex-fill fw-bold p-2"
+    routerLinkActive="active"
+    [routerLink]="'/standings/' + league.id"
+  >
+    {{ league.country }}
+  </li>
+</ul>

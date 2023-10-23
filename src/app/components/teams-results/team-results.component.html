@@ -1,0 +1,36 @@
+<ng-container *ngIf="teamFixtures$ | async as teamResults; else loading">
+  <section class="backdrop my-4">
+    <ng-container *ngIf="teamInfo$ | async as teamInfo">
+      <h2 class="text-center fs-3 py-2">Last 10 game results for {{ teamInfo[0].name }}</h2>
+    </ng-container>
+    <table class="table table-striped text-center m-0">
+      <tbody>
+        <tr *ngFor="let result of teamResults; let i = index">
+          <td>
+            <img
+              [src]="result.teams.home.logo"
+              [alt]="'Team ' + result.teams.away.name + ' logo'"
+              class="team-logo"
+            />
+          </td>
+          <td>{{ result.teams.home.name }}</td>
+          <td>{{ result.goals.home + ' - ' + result.goals.away }}</td>
+          <td>{{ result.teams.away.name }}</td>
+          <td>
+            <img
+              [src]="result.teams.away.logo"
+              [alt]="'Team ' + result.teams.away.name + ' logo'"
+              class="team-logo"
+            />
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <div class="center">
+    <button [routerLink]="['/countries']" class="back-button">Back</button>
+  </div>
+</ng-container>
+
+<ng-template #loading> Loading </ng-template>

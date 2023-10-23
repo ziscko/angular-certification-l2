@@ -1,17 +1,12 @@
-.main {
+main {
   height: 100%;
   padding: 2rem 0;
 
-  .backdrop {
-    backdrop-filter: brightness(1.5) blur(10px) grayscale(0.5);
-    background: rgb(255 255 255 / 65%);
-    border-radius: 0.25rem;
-    border: solid 2px #046f7c;
-    overflow: hidden;
-  }
-
   .title {
     margin: auto;
+    letter-spacing: -0.05rem;
+    text-align: center;
+    text-shadow: 0 0 10px #057380;
     width: fit-content;
   }
 }
