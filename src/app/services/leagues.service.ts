@@ -5,7 +5,7 @@ import { League } from '../models/football.model';
   providedIn: 'root'
 })
 export class LeaguesService {
-  leagues: any = [
+  leagues: League[] = [
     { id: 39, name: 'Premier League', country: 'England' },
     { id: 140, name: 'La Liga', country: 'Spain' },
     { id: 61, name: 'Ligue 1', country: 'France' },

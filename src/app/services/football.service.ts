@@ -41,7 +41,7 @@ export class FootballService {
       .get<StandingsResponse>(`${this.apiUrl}/standings?league=${league}&season=${seasonYear}`)
       .pipe(
         map((data) =>
-          data && data.response.length
+          data && data.response.length && data.response[0].league.standings
             ? data.response[0].league.standings[0].map((standings) => standings)
             : []
         )
