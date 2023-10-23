@@ -8,9 +8,10 @@
         <tr *ngFor="let result of teamResults; let i = index">
           <td>
             <img
+              class="team-logo"
               [src]="result.teams.home.logo"
               [alt]="'Team ' + result.teams.away.name + ' logo'"
-              class="team-logo"
+              [imgSize]="32"
             />
           </td>
           <td>{{ result.teams.home.name }}</td>
@@ -18,9 +19,10 @@
           <td>{{ result.teams.away.name }}</td>
           <td>
             <img
+              class="team-logo"
               [src]="result.teams.away.logo"
               [alt]="'Team ' + result.teams.away.name + ' logo'"
-              class="team-logo"
+              [imgSize]="32"
             />
           </td>
         </tr>

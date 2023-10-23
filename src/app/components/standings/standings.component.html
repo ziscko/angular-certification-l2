@@ -24,9 +24,10 @@
         <td>{{ standing.rank }}</td>
         <td>
           <img
+            class="team-logo"
             [src]="standing.team.logo"
             [alt]="'Team ' + standing.team.name + ' logo'"
-            class="team-logo"
+            [imgSize]="32"
           />
         </td>
         <td class="text-start">{{ standing.team.name }}</td>

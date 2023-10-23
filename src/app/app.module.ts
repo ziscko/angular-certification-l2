@@ -8,7 +8,7 @@ import { StandingsComponent } from './components/standings/standings.component';
 import { TeamResultsComponent } from './components/teams-results/team-results.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ApiKeyInterceptor } from './interceptors/api-key.interceptor';
-import { ImgSizeDirective } from './img-size.directive';
+import { ImgSizeDirective } from './directives/img-size.directive';
 
 @NgModule({
   declarations: [
