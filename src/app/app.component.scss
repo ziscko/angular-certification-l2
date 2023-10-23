@@ -1,0 +1,17 @@
+.main {
+  height: 100%;
+  padding: 2rem 0;
+
+  .backdrop {
+    backdrop-filter: brightness(1.5) blur(10px) grayscale(0.5);
+    background: rgb(255 255 255 / 65%);
+    border-radius: 0.5rem;
+    border: solid 3px #046f7c;
+    overflow: hidden;
+  }
+
+  .title {
+    margin: auto;
+    width: fit-content;
+  }
+}
