@@ -3,6 +3,7 @@
     *ngFor="let league of leagues"
     class="flex-fill fw-bold p-2"
     routerLinkActive="active"
+    [id]="league.country.toLowerCase() + 'Select'"
     [routerLink]="'/standings/' + league.id"
   >
     {{ league.country }}
