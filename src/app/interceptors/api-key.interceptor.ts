@@ -38,7 +38,6 @@ export class ApiKeyInterceptor implements HttpInterceptor {
     return next.handle(modifiedReq).pipe(
       switchMap((event) => {
         if (event instanceof HttpResponse) {
-          // Guardar la respuesta en caché
           localStorage.setItem(cacheKey, JSON.stringify(event.body));
           localStorage.setItem(lastCacheTimeKey, new Date().getTime().toString());
         }
