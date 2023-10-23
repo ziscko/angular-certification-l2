@@ -9,7 +9,6 @@ export interface League {
 }
 
 export interface Team {
-  response: any;
   id: number;
   name: string;
   logo: string;
