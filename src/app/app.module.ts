@@ -10,6 +10,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ApiKeyInterceptor } from './interceptors/api-key.interceptor';
 import { ImgSizeDirective } from './directives/img-size.directive';
 import { BackButtonDirective } from './back-button.directive';
+import { LoadingComponent } from './components/loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { BackButtonDirective } from './back-button.directive';
     StandingsComponent,
     TeamResultsComponent,
     ImgSizeDirective,
-    BackButtonDirective
+    BackButtonDirective,
+    LoadingComponent
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [

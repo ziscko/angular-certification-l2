@@ -13,6 +13,7 @@ export class TeamResultsComponent {
   teamId: number | undefined;
   teamInfo$: Observable<Team[]> | undefined;
   teamFixtures$: Observable<Fixture[]> | undefined;
+  loadingError: boolean = false;
 
   constructor(private route: ActivatedRoute, private footballAPI: FootballService) {}
 
@@ -25,6 +26,15 @@ export class TeamResultsComponent {
   getResults() {
     if (this.teamId) {
       this.teamFixtures$ = this.footballAPI.getResults(this.teamId, 10);
+
+      this.teamFixtures$.subscribe({
+        next: (data) => {
+          if (data.length < 1) this.loadingError = true;
+        },
+        error: () => {
+          this.loadingError = true;
+        }
+      });
     }
   }
 

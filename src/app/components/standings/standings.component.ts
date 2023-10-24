@@ -13,6 +13,7 @@ import { LeaguesService } from '../../services/leagues.service';
 export class StandingsComponent implements OnInit {
   leagues: League[];
   leagueId: number | undefined;
+  loadingError: boolean = false;
   standingsData$: Observable<Standing[]> | undefined;
 
   constructor(
@@ -35,9 +36,18 @@ export class StandingsComponent implements OnInit {
   }
 
   private getStandings() {
-    this.leagueId = +this.route.snapshot.params['id'];
+    this.leagueId = this.route.snapshot.params['id'];
     if (!this.leagueId) return;
     this.standingsData$ = this.footballAPI.getStandings(this.leagueId);
+
+    this.standingsData$.subscribe({
+      next: (data) => {
+        if (data.length < 1) this.loadingError = true;
+      },
+      error: () => {
+        this.loadingError = true;
+      }
+    });
   }
 
   getTeamResults(teamId: number) {

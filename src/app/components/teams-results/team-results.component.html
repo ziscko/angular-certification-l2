@@ -29,10 +29,20 @@
       </tbody>
     </table>
   </section>
-
-  <div>
-    <button backButton class="btn btn-dark">Back</button>
-  </div>
 </ng-container>
 
-<ng-template #loading> Loading </ng-template>
+<ng-template #loading>
+  <section class="backdrop mb-4">
+    <app-loading message="Loading results..." *ngIf="!loadingError"></app-loading>
+  </section>
+</ng-template>
+
+<ng-container *ngIf="loadingError">
+  <section class="backdrop">
+    <p class="text-center my-2">No data available</p>
+  </section>
+</ng-container>
+
+<div>
+  <button backButton class="btn btn-dark">Back</button>
+</div>
