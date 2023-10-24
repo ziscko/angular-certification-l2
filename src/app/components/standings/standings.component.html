@@ -19,7 +19,7 @@
         *ngFor="let standing of standingsData; let i = index"
         (click)="getTeamResults(standing.team.id)"
         [routerLink]="'/team-results/'"
-        title="Get team results for"
+        [title]="'Get team results for ' + standing.team.name"
       >
         <td>{{ standing.rank }}</td>
         <td>
