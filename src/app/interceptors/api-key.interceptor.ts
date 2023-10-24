@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpRequest, HttpHandler, HttpInterceptor, HttpResponse } from '@angular/common/http';
-import { of, timer } from 'rxjs';
-import { switchMap, tap } from 'rxjs/operators';
+import { of } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 
 @Injectable()
 export class ApiKeyInterceptor implements HttpInterceptor {
