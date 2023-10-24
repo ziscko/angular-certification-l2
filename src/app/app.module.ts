@@ -9,6 +9,7 @@ import { TeamResultsComponent } from './components/teams-results/team-results.co
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ApiKeyInterceptor } from './interceptors/api-key.interceptor';
 import { ImgSizeDirective } from './directives/img-size.directive';
+import { BackButtonDirective } from './back-button.directive';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { ImgSizeDirective } from './directives/img-size.directive';
     LeaguesSelectorComponent,
     StandingsComponent,
     TeamResultsComponent,
-    ImgSizeDirective
+    ImgSizeDirective,
+    BackButtonDirective
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [
