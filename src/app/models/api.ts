@@ -1,4 +1,4 @@
-export interface HttpResponse<Response> {
+export interface ApiResponse<Response> {
   errors: errors;
   get: string;
   paging: Paging;

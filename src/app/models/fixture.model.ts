@@ -69,28 +69,3 @@ interface Status {
   short: string;
   elapsed: number;
 }
-
-//API
-export interface HttpResponse<Response> {
-  errors: errors;
-  get: string;
-  paging: Paging;
-  parameters: Parameters;
-  response: Response;
-  results: number;
-}
-
-interface errors {
-  time?: string;
-  bug?: string;
-  report?: string;
-}
-
-interface Parameters {
-  [key: string]: string;
-}
-
-interface Paging {
-  current: number;
-  total: number;
-}
