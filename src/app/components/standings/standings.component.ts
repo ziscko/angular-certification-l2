@@ -1,20 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { League, Standing } from '../../models/football.model';
+import { Observable, Subscription, Subject, takeUntil } from 'rxjs'; // Import Subject
+import { League } from '../../models/fixture.model';
 import { FootballService } from '../../services/football.service';
 import { LeaguesService } from '../../services/leagues.service';
+import { Standing } from '../../models/standing.model';
 
 @Component({
   selector: 'app-standings',
   templateUrl: './standings.component.html',
   styleUrls: ['./standings.component.scss']
 })
-export class StandingsComponent implements OnInit {
+export class StandingsComponent implements OnInit, OnDestroy {
   leagues: League[];
   leagueId: number | undefined;
   loadingError: boolean = false;
   standingsData$: Observable<Standing[]> | undefined;
+  standingsSubscription: Subscription | undefined;
+  private destroy$ = new Subject<void>();
 
   constructor(
     private router: Router,
@@ -35,12 +38,19 @@ export class StandingsComponent implements OnInit {
     });
   }
 
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
+
   private getStandings(): void {
     this.leagueId = this.route.snapshot.params['id'];
     if (!this.leagueId) return;
-    this.standingsData$ = this.footballAPI.getStandings(this.leagueId);
 
-    this.standingsData$.subscribe({
+    const seasonYear: number = new Date().getFullYear();
+    this.standingsData$ = this.footballAPI.getStandings(this.leagueId, seasonYear);
+
+    this.standingsSubscription = this.standingsData$.pipe(takeUntil(this.destroy$)).subscribe({
       next: (data) => {
         if (data.length < 1) this.loadingError = true;
       },

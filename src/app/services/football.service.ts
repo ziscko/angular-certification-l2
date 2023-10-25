@@ -1,14 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
-import {
-  Fixture,
-  FixtureResponse,
-  Standing,
-  StandingsResponse,
-  Team,
-  TeamsResponse
-} from '../models/football.model';
+import { FixtureResponse, HttpResponse } from '../models/fixture.model';
+import { TeamsResponse } from '../models/team';
+import { Standing, StandingsResponse } from '../models/standing.model';
 
 @Injectable({
   providedIn: 'root'
@@ -18,33 +13,29 @@ export class FootballService {
 
   constructor(private http: HttpClient) {}
 
-  getTeamInfo(team: number): Observable<Team[]> {
-    return this.http.get<TeamsResponse>(`${this.apiUrl}/teams?id=${team}`).pipe(
-      map((data) => {
-        return data.response.length > 0 ? data.response.map((teamsData) => teamsData.team) : [];
-      })
+  private get<T>(url: string, params: HttpParams): Observable<T> {
+    return this.http.get<T>(url, { params });
+  }
+
+  getTeamInfo(teamId: number): Observable<TeamsResponse[]> {
+    const params = new HttpParams().set('id', teamId);
+    const url = `${this.apiUrl}/teams`;
+    return this.get<HttpResponse<TeamsResponse[]>>(url, params).pipe(map((data) => data.response));
+  }
+
+  getResults(teamId: number, last: number): Observable<FixtureResponse[]> {
+    const params = new HttpParams().set('team', teamId.toString()).set('last', last);
+    const url = `${this.apiUrl}/fixtures`;
+    return this.get<HttpResponse<FixtureResponse[]>>(url, params).pipe(
+      map((data) => data.response)
     );
   }
 
-  getResults(team: number, last: number): Observable<Fixture[]> {
-    return this.http.get<FixtureResponse>(`${this.apiUrl}/fixtures?team=${team}&last=${last}`).pipe(
-      map((data) => {
-        return data.response.length > 0 ? data.response.map((fixtureData) => fixtureData) : [];
-      })
+  getStandings(leagueId: number, year: number): Observable<Standing[]> {
+    const params = new HttpParams().set('league', leagueId).set('season', year);
+    const url = `${this.apiUrl}/standings`;
+    return this.get<HttpResponse<StandingsResponse[]>>(url, params).pipe(
+      map((data) => data.response[0].league.standings[0])
     );
-  }
-
-  getStandings(league: number): Observable<Standing[]> {
-    const seasonYear: number = new Date().getFullYear();
-
-    return this.http
-      .get<StandingsResponse>(`${this.apiUrl}/standings?league=${league}&season=${seasonYear}`)
-      .pipe(
-        map((data) =>
-          data.response.length > 0 && data.response[0].league.standings
-            ? data.response[0].league.standings[0].map((standings) => standings)
-            : []
-        )
-      );
   }
 }

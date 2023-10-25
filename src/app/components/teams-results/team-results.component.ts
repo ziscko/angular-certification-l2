@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { Fixture, Team } from '../../models/football.model';
+import { FixtureResponse } from '../../models/fixture.model';
 import { FootballService } from '../../services/football.service';
+import { TeamsResponse } from '../../models/team';
 
 @Component({
   selector: 'app-team-results',
@@ -11,8 +12,8 @@ import { FootballService } from '../../services/football.service';
 })
 export class TeamResultsComponent {
   teamId: number | undefined;
-  teamInfo$: Observable<Team[]> | undefined;
-  teamFixtures$: Observable<Fixture[]> | undefined;
+  teamInfo$: Observable<TeamsResponse[]> | undefined;
+  teamFixtures$: Observable<FixtureResponse[]> | undefined;
   loadingError: boolean = false;
 
   constructor(private route: ActivatedRoute, private footballAPI: FootballService) {}
@@ -26,15 +27,14 @@ export class TeamResultsComponent {
   getResults(): void {
     if (this.teamId) {
       this.teamFixtures$ = this.footballAPI.getResults(this.teamId, 10);
-
-      this.teamFixtures$.subscribe({
+      /* this.teamFixtures$.subscribe({
         next: (data) => {
           if (data.length < 1) this.loadingError = true;
         },
         error: () => {
           this.loadingError = true;
         }
-      });
+      }); */
     }
   }
 
