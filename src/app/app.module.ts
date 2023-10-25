@@ -9,7 +9,7 @@ import { TeamResultsComponent } from './components/teams-results/team-results.co
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ApiKeyInterceptor } from './interceptors/api-key.interceptor';
 import { ImgSizeDirective } from './directives/img-size.directive';
-import { BackButtonDirective } from './back-button.directive';
+import { BackButtonDirective } from './directives/back-button.directive';
 import { LoadingComponent } from './components/loading/loading.component';
 
 @NgModule({
