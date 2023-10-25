@@ -1,6 +1,6 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable, Subscription, Subject, takeUntil } from 'rxjs'; // Import Subject
+import { Observable, Subject, Subscription, takeUntil } from 'rxjs';
 import { League } from '../../models/fixture.model';
 import { FootballService } from '../../services/football.service';
 import { LeaguesService } from '../../services/leagues.service';
