@@ -35,7 +35,7 @@ export class StandingsComponent implements OnInit {
     });
   }
 
-  private getStandings() {
+  private getStandings(): void {
     this.leagueId = this.route.snapshot.params['id'];
     if (!this.leagueId) return;
     this.standingsData$ = this.footballAPI.getStandings(this.leagueId);
@@ -50,7 +50,7 @@ export class StandingsComponent implements OnInit {
     });
   }
 
-  getTeamResults(teamId: number) {
+  getTeamResults(teamId: number): void {
     this.router.navigateByUrl(`/team-results/${teamId}`);
   }
 

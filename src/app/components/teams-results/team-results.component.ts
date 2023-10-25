@@ -23,7 +23,7 @@ export class TeamResultsComponent {
     this.getResults();
   }
 
-  getResults() {
+  getResults(): void {
     if (this.teamId) {
       this.teamFixtures$ = this.footballAPI.getResults(this.teamId, 10);
 
@@ -38,7 +38,7 @@ export class TeamResultsComponent {
     }
   }
 
-  getTeamInfo() {
+  getTeamInfo(): void {
     if (this.teamId) {
       this.teamInfo$ = this.footballAPI.getTeamInfo(this.teamId);
     }

@@ -14,14 +14,14 @@ import {
   providedIn: 'root'
 })
 export class FootballService {
-  private apiUrl = 'https://v3.football.api-sports.io';
+  readonly apiUrl = 'https://v3.football.api-sports.io';
 
   constructor(private http: HttpClient) {}
 
   getTeamInfo(team: number): Observable<Team[]> {
     return this.http.get<TeamsResponse>(`${this.apiUrl}/teams?id=${team}`).pipe(
       map((data) => {
-        return data && data.response.length ? data.response.map((teamsData) => teamsData.team) : [];
+        return data.response.length > 0 ? data.response.map((teamsData) => teamsData.team) : [];
       })
     );
   }
@@ -29,7 +29,7 @@ export class FootballService {
   getResults(team: number, last: number): Observable<Fixture[]> {
     return this.http.get<FixtureResponse>(`${this.apiUrl}/fixtures?team=${team}&last=${last}`).pipe(
       map((data) => {
-        return data && data.response.length ? data.response.map((fixtureData) => fixtureData) : [];
+        return data.response.length > 0 ? data.response.map((fixtureData) => fixtureData) : [];
       })
     );
   }
@@ -41,7 +41,7 @@ export class FootballService {
       .get<StandingsResponse>(`${this.apiUrl}/standings?league=${league}&season=${seasonYear}`)
       .pipe(
         map((data) =>
-          data && data.response.length && data.response[0].league.standings
+          data.response.length > 0 && data.response[0].league.standings
             ? data.response[0].league.standings[0].map((standings) => standings)
             : []
         )
