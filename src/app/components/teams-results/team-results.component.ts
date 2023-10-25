@@ -4,7 +4,7 @@ import { Observable, Subject } from 'rxjs';
 import { FixtureResponse } from '../../models/fixture.model';
 import { FootballService } from '../../services/football.service';
 import { TeamsResponse } from '../../models/team';
-import { takeUntil } from 'rxjs/operators';
+import { catchError, takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-team-results',
@@ -33,15 +33,13 @@ export class TeamResultsComponent implements OnDestroy {
 
   getResults(): void {
     if (this.teamId) {
-      this.teamFixtures$ = this.footballAPI.getResults(this.teamId, 10);
-      this.teamFixtures$.pipe(takeUntil(this.destroy$)).subscribe({
-        next: (data) => {
-          if (data.length < 1) this.loadingError = true;
-        },
-        error: () => {
+      this.teamFixtures$ = this.footballAPI.getResults(this.teamId, 10).pipe(
+        takeUntil(this.destroy$),
+        catchError(() => {
           this.loadingError = true;
-        }
-      });
+          return [];
+        })
+      );
     }
   }
 

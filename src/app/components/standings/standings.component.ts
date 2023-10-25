@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable, Subject, Subscription, takeUntil } from 'rxjs';
+import { Observable, Subject, catchError, takeUntil } from 'rxjs';
 import { League } from '../../models/fixture.model';
 import { FootballService } from '../../services/football.service';
 import { LeaguesService } from '../../services/leagues.service';
@@ -16,7 +16,6 @@ export class StandingsComponent implements OnInit, OnDestroy {
   leagueId: number | undefined;
   loadingError: boolean = false;
   standingsData$: Observable<Standing[]> | undefined;
-  standingsSubscription: Subscription | undefined;
   private destroy$ = new Subject<void>();
 
   constructor(
@@ -48,16 +47,13 @@ export class StandingsComponent implements OnInit, OnDestroy {
     if (!this.leagueId) return;
 
     const seasonYear: number = new Date().getFullYear();
-    this.standingsData$ = this.footballAPI.getStandings(this.leagueId, seasonYear);
-
-    this.standingsSubscription = this.standingsData$.pipe(takeUntil(this.destroy$)).subscribe({
-      next: (data) => {
-        if (data.length < 1) this.loadingError = true;
-      },
-      error: () => {
+    this.standingsData$ = this.footballAPI.getStandings(this.leagueId, seasonYear).pipe(
+      takeUntil(this.destroy$),
+      catchError(() => {
         this.loadingError = true;
-      }
-    });
+        return [];
+      })
+    );
   }
 
   getTeamResults(teamId: number): void {
