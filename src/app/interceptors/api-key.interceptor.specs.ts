@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { ApiKeyInterceptor } from './api-key.interceptor';
 
-describe('FoorballInterceptorInterceptor', () => {
+describe('ApiKeyInterceptor', () => {
   beforeEach(() =>
     TestBed.configureTestingModule({
       providers: [ApiKeyInterceptor]

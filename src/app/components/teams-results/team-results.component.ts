@@ -1,7 +1,7 @@
 import { Component, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
-import { FixtureResponse } from '../../models/fixture.model';
+import { FixtureResponse } from '../../models/fixture';
 import { FootballService } from '../../services/football.service';
 import { TeamsResponse } from '../../models/team';
 import { catchError, takeUntil } from 'rxjs/operators';

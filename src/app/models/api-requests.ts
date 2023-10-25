@@ -1,5 +1,5 @@
 export interface ApiResponse<Response> {
-  errors: errors;
+  errors: Errors;
   get: string;
   paging: Paging;
   parameters: Parameters;
@@ -12,7 +12,7 @@ interface Paging {
   total: number;
 }
 
-interface errors {
+interface Errors {
   [key: string]: string;
 }
 

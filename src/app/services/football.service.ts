@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
-import { FixtureResponse } from '../models/fixture.model';
+import { FixtureResponse } from '../models/fixture';
 import { TeamsResponse } from '../models/team';
-import { Standing, StandingsResponse } from '../models/standing.model';
-import { ApiResponse } from '../models/api';
+import { Standing, StandingsResponse } from '../models/standings';
+import { ApiResponse } from '../models/api-requests';
 
 @Injectable({
   providedIn: 'root'

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { League } from '../models/fixture.model';
+import { League } from '../models/fixture';
 
 @Injectable({
   providedIn: 'root'

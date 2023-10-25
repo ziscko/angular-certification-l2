@@ -1,10 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, Subject, catchError, takeUntil } from 'rxjs';
-import { League } from '../../models/fixture.model';
+import { League } from '../../models/fixture';
 import { FootballService } from '../../services/football.service';
 import { LeaguesService } from '../../services/leagues.service';
-import { Standing } from '../../models/standing.model';
+import { Standing } from '../../models/standings';
 
 @Component({
   selector: 'app-standings',

@@ -1,4 +1,4 @@
-import { Standing } from './standing.model';
+import { Standing } from './standings';
 
 export interface FixtureResponse {
   fixture: Fixture;

@@ -1,4 +1,4 @@
-import { Team } from './fixture.model';
+import { Team } from './fixture';
 
 export interface StandingsResponse {
   league: League;

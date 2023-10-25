@@ -1,4 +1,4 @@
-import { Team, Venue } from './fixture.model';
+import { Team, Venue } from './fixture';
 
 export interface TeamsResponse {
   team: Team;
