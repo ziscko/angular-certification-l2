@@ -17,9 +17,10 @@ export class NavigationService {
   goBack(): void {
     this.history.pop();
     if (this.history.length > 0) {
-      this.location.back();
+      const lastElement = this.history[this.history.length - 1];
+      this.router.navigateByUrl(lastElement);
     } else {
-      this.router.navigateByUrl('/');
+      this.location.back();
     }
   }
 }
